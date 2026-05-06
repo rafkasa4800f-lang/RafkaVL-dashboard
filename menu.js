@@ -6,11 +6,11 @@ document.write(`
         <span onclick="toggleSidebar()" style="cursor:pointer; color:#fff;">×</span>
     </h2>
     <div class="sidebar-links" id="sidebar-menu-list">
-        <a href="/dashboard/">📊 Dashboard Status</a>
-        <a href="/groups/">👥 Manajemen Grup & Sewa</a>
-        <a href="/users/">👤 User, Limit & Premium</a>
-        <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
-        <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
+    <a href="/dashboard/">📊 Dashboard Status</a>
+    <a href="/groups/">👥 Manajemen Grup & Sewa</a>
+    <a href="/users/">👤 User, Limit & Premium</a>
+    <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
+    <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
     </div>
 </div>
 `);
