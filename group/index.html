@@ -56,21 +56,7 @@
 </head>
 <body>
 
-<div id="overlay" onclick="toggleSidebar()"></div>
-<div id="sidebar">
-    <h2 style="color:var(--net-glow); margin-bottom:30px; font-size: 18px; display: flex; justify-content: space-between;">
-        <span>👑 RafkaVL Menu</span>
-        <span onclick="toggleSidebar()" style="cursor:pointer; color:#fff;">×</span>
-    </h2>
-    <div class="sidebar-links">
-        <a href="index.html">📊 Dashboard Status</a>
-        <a href="groups.html" class="active">👥 Manajemen Grup & Sewa</a>
-        <a href="users.html">👤 User, Limit & Premium</a>
-        <a href="settings.html">⚙️ Pengaturan Fitur Bot</a>
-        <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
-    </div>
-</div>
-
+<script src="/menu.js"></script>
 <div class="container" id="main-content">
     <div class="header">
         <h1><span class="menu-btn" onclick="toggleSidebar()">☰</span> <span style="color: var(--net-glow);">◆</span> GROUP MANAGEMENT</h1>
