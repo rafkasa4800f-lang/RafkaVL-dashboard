@@ -6,10 +6,10 @@ document.write(`
         <span onclick="toggleSidebar()" style="cursor:pointer; color:#fff;">×</span>
     </h2>
     <div class="sidebar-links" id="sidebar-menu-list">
-        <a href="index.html">📊 Dashboard Status</a>
-        <a href="groups.html">👥 Manajemen Grup & Sewa</a>
-        <a href="users.html">👤 User, Limit & Premium</a>
-        <a href="settings.html">⚙️ Pengaturan Fitur Bot</a>
+        <a href="/dashboard/">📊 Dashboard Status</a>
+        <a href="/groups/">👥 Manajemen Grup & Sewa</a>
+        <a href="/users/">👤 User, Limit & Premium</a>
+        <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
         <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
     </div>
 </div>
@@ -21,12 +21,16 @@ function toggleSidebar() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let currentPage = window.location.pathname.split('/').pop();
-    if (!currentPage || currentPage === '') currentPage = 'index.html'; 
+    // Membaca nama folder dari URL, bukan nama file lagi
+    const pathArray = window.location.pathname.split('/').filter(p => p !== "");
+    const currentFolder = pathArray.length > 0 ? pathArray[0] : 'dashboard'; 
     
     const menuLinks = document.querySelectorAll('#sidebar-menu-list a');
     menuLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) { link.classList.add('active'); }
+        // Cocokkan link dengan folder saat ini
+        if (link.getAttribute('href').includes('/' + currentFolder + '/')) { 
+            link.classList.add('active'); 
+        }
     });
 
     const isAdmin = localStorage.getItem('rafkavl_token') === 'AUTH_VALID_2026';
@@ -35,10 +39,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if(authBtn) {
         if (isAdmin) {
             authBtn.innerHTML = '🔓 Logout Admin'; authBtn.style.color = 'var(--danger)';
-            authBtn.onclick = () => { localStorage.removeItem('rafkavl_token'); window.location.reload(); };
+            authBtn.onclick = () => { localStorage.removeItem('rafkavl_token'); window.location.href = '/dashboard/'; };
         } else {
             authBtn.innerHTML = '🔒 Login Admin'; authBtn.style.color = 'var(--success)';
-            authBtn.onclick = () => { window.location.href = 'login.html'; };
+            authBtn.onclick = () => { window.location.href = '/admin-login/'; };
         }
     }
 });
