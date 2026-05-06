@@ -6,11 +6,11 @@ document.write(`
         <span onclick="toggleSidebar()" style="cursor:pointer; color:#fff;">×</span>
     </h2>
     <div class="sidebar-links" id="sidebar-menu-list">
-    <a href="/dashboard/">📊 Dashboard Status</a>
-    <a href="/groups/">👥 Manajemen Grup & Sewa</a>
-    <a href="/users/">👤 User, Limit & Premium</a>
-    <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
-    <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
+        <a href="/dashboard/">📊 Dashboard Status</a>
+        <a href="/group/">👥 Manajemen Grup & Sewa</a>
+        <a href="/users/">👤 User, Limit & Premium</a>
+        <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
+        <a id="auth-btn" style="margin-top:30px; border-top: 1px solid var(--border); padding-top: 15px; cursor: pointer; display: block; font-weight: bold;">Loading...</a>
     </div>
 </div>
 `);
@@ -21,14 +21,16 @@ function toggleSidebar() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // Membaca nama folder dari URL, bukan nama file lagi
+    // Membaca nama folder dari URL (misal: "settings" dari "/settings/")
     const pathArray = window.location.pathname.split('/').filter(p => p !== "");
-    const currentFolder = pathArray.length > 0 ? pathArray[0] : 'dashboard'; 
+    
+    // Jika path kosong (di root domain), default ke /dashboard/
+    const currentFolder = pathArray.length > 0 ? '/' + pathArray[0] + '/' : '/dashboard/'; 
     
     const menuLinks = document.querySelectorAll('#sidebar-menu-list a');
     menuLinks.forEach(link => {
-        // Cocokkan link dengan folder saat ini
-        if (link.getAttribute('href').includes('/' + currentFolder + '/')) { 
+        // Efek nyala (active) jika href sama dengan folder saat ini
+        if (link.getAttribute('href') === currentFolder) { 
             link.classList.add('active'); 
         }
     });
@@ -38,11 +40,20 @@ window.addEventListener('DOMContentLoaded', () => {
     
     if(authBtn) {
         if (isAdmin) {
-            authBtn.innerHTML = '🔓 Logout Admin'; authBtn.style.color = 'var(--danger)';
-            authBtn.onclick = () => { localStorage.removeItem('rafkavl_token'); window.location.href = '/dashboard/'; };
+            authBtn.innerHTML = '🔓 Logout Admin'; 
+            authBtn.style.color = 'var(--danger)';
+            authBtn.onclick = () => { 
+                localStorage.removeItem('rafkavl_token'); 
+                // Arahkan ke dashboard setelah logout
+                window.location.href = '/dashboard/'; 
+            };
         } else {
-            authBtn.innerHTML = '🔒 Login Admin'; authBtn.style.color = 'var(--success)';
-            authBtn.onclick = () => { window.location.href = '/admin-login/'; };
+            authBtn.innerHTML = '🔒 Login Admin'; 
+            authBtn.style.color = 'var(--success)';
+            // Arahkan ke folder admin-login sesuai struktur
+            authBtn.onclick = () => { 
+                window.location.href = '/admin-login/'; 
+            };
         }
     }
 });
