@@ -129,8 +129,9 @@
     function processLogin(event) {
         event.preventDefault(); 
         
-        const userStr = document.getElementById('username').value;
-        const passStr = document.getElementById('password').value;
+        // Menggunakan .trim() agar kebal terhadap spasi tidak sengaja
+        const userStr = document.getElementById('username').value.trim();
+        const passStr = document.getElementById('password').value.trim();
         const btn = document.getElementById('btn-submit');
         const errorAlert = document.getElementById('error-alert');
 
@@ -151,8 +152,9 @@
                 // Set tiket masuk (Token Sesi)
                 localStorage.setItem('rafkavl_token', 'AUTH_VALID_2026');
                 
+                // Redirect menggunakan jalur absolut
                 setTimeout(() => {
-                    window.location.href = "/dashboard/"; // Lempar ke Dashboard
+                    window.location.href = "/dashboard/"; 
                 }, 1000);
 
             } else {
@@ -164,4 +166,4 @@
     }
 </script>
 </body>
-  </html>
+</html>
