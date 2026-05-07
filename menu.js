@@ -6,7 +6,7 @@ document.write(`
         <span onclick="toggleSidebar()" style="cursor:pointer; color:#fff;">×</span>
     </h2>
     <div class="sidebar-links" id="sidebar-menu-list">
-        <a href="/dashboard/">📊 Dashboard Status</a>
+        <a href="/">📊 Dashboard Status</a>
         <a href="/group/">👥 Manajemen Grup & Sewa</a>
         <a href="/users/">👤 User, Limit & Premium</a>
         <a href="/settings/">⚙️ Pengaturan Fitur Bot</a>
